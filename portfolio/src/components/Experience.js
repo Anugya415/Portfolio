@@ -14,8 +14,7 @@ export default function Experience() {
         'Deployed applications on cloud platforms (Vercel, AWS)',
         'Contributed to open-source projects and collaborated with developers worldwide'
       ],
-      skills: ['React', 'Next.js', 'Node.js', 'MongoDB', 'PostgreSQL', 'AWS'],
-      color: 'from-blue-500 to-purple-500'
+      skills: ['React', 'Next.js', 'Node.js', 'MongoDB', 'PostgreSQL', 'AWS']
     },
     {
       id: 2,
@@ -31,8 +30,7 @@ export default function Experience() {
         'Integrated third-party APIs and services',
         'Maintained clean, scalable, and maintainable codebases'
       ],
-      skills: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Redux'],
-      color: 'from-green-500 to-teal-500'
+      skills: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Redux']
     }
   ];
 
@@ -53,66 +51,66 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold text-black dark:text-white mb-4">
             Experience & Education
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             My journey in software development and academic background
           </p>
         </div>
 
         {/* Experience Section */}
         <div className="mb-20">
-          <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">
+          <h3 className="text-3xl font-bold text-black dark:text-white mb-12 text-center">
             Professional Experience
           </h3>
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-500"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-black dark:bg-white"></div>
 
             <div className="space-y-12">
               {experiences.map((exp, index) => (
                 <div key={exp.id} className="relative flex items-start">
                   {/* Timeline dot */}
-                  <div className={`absolute left-6 w-4 h-4 bg-gradient-to-r ${exp.color} rounded-full border-4 border-white dark:border-slate-900 shadow-lg`}></div>
+                  <div className="absolute left-6 w-4 h-4 bg-black dark:bg-white rounded-full border-4 border-white dark:border-black shadow-lg"></div>
 
                   {/* Content */}
-                  <div className="ml-16 bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700 w-full hover:shadow-2xl transition-all duration-300">
+                  <div className="ml-16 bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow-xl border-2 border-gray-200 dark:border-gray-700 w-full hover:shadow-2xl transition-all duration-300 hover:border-black dark:hover:border-white">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <div>
-                        <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                        <h4 className="text-2xl font-bold text-black dark:text-white mb-1">
                           {exp.title}
                         </h4>
-                        <p className="text-blue-600 dark:text-blue-400 font-medium mb-2">
+                        <p className="text-black dark:text-white font-medium mb-2">
                           {exp.company}
                         </p>
                       </div>
                       <div className="text-right">
-                        <span className="inline-block px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm font-medium mb-2">
+                        <span className="inline-block px-3 py-1 bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white rounded-full text-sm font-medium mb-2">
                           {exp.type}
                         </span>
-                        <p className="text-slate-500 dark:text-slate-400 text-sm">
+                        <p className="text-gray-500 dark:text-gray-400 text-sm">
                           {exp.period}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                       {exp.description}
                     </p>
 
                     {/* Achievements */}
                     <div className="mb-6">
-                      <h5 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Key Achievements:</h5>
+                      <h5 className="text-lg font-semibold text-black dark:text-white mb-3">Key Achievements:</h5>
                       <ul className="space-y-2">
                         {exp.achievements.map((achievement, idx) => (
-                          <li key={idx} className="flex items-start text-slate-600 dark:text-slate-300">
-                            <span className="text-green-500 mr-2 mt-1">✓</span>
+                          <li key={idx} className="flex items-start text-gray-600 dark:text-gray-400">
+                            <span className="text-black dark:text-white mr-2 mt-1">✓</span>
                             {achievement}
                           </li>
                         ))}
@@ -121,10 +119,10 @@ export default function Experience() {
 
                     {/* Skills */}
                     <div>
-                      <h5 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Technologies Used:</h5>
+                      <h5 className="text-lg font-semibold text-black dark:text-white mb-3">Technologies Used:</h5>
                       <div className="flex flex-wrap gap-2">
                         {exp.skills.map((skill) => (
-                          <span key={skill} className={`px-3 py-1 bg-gradient-to-r ${exp.color} text-white rounded-full text-sm font-medium`}>
+                          <span key={skill} className="px-3 py-1 bg-black dark:bg-white text-white dark:text-black border-2 border-black dark:border-white rounded-full text-sm font-medium">
                             {skill}
                           </span>
                         ))}
@@ -139,41 +137,41 @@ export default function Experience() {
 
         {/* Education Section */}
         <div>
-          <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">
+          <h3 className="text-3xl font-bold text-black dark:text-white mb-12 text-center">
             Education
           </h3>
 
-          <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700 hover:shadow-2xl transition-all duration-300">
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow-xl border-2 border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 hover:border-black dark:hover:border-white">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
               <div className="flex-1">
-                <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                <h4 className="text-2xl font-bold text-black dark:text-white mb-2">
                   {education.degree}
                 </h4>
-                <p className="text-blue-600 dark:text-blue-400 font-medium mb-1">
+                <p className="text-black dark:text-white font-medium mb-1">
                   {education.university}
                 </p>
-                <p className="text-slate-500 dark:text-slate-400 text-sm">
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
                   {education.location} • {education.period}
                 </p>
               </div>
               <div className="mt-4 lg:mt-0 lg:text-right">
-                <div className="inline-block px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-lg font-medium">
+                <div className="inline-block px-4 py-2 bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white rounded-lg font-medium">
                   🎓 Graduated with Honors
                 </div>
               </div>
             </div>
 
-            <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
               {education.description}
             </p>
 
             {/* Achievements */}
             <div className="mb-6">
-              <h5 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Academic Achievements:</h5>
+              <h5 className="text-lg font-semibold text-black dark:text-white mb-3">Academic Achievements:</h5>
               <div className="grid md:grid-cols-2 gap-2">
                 {education.achievements.map((achievement, idx) => (
-                  <div key={idx} className="flex items-start text-slate-600 dark:text-slate-300">
-                    <span className="text-blue-500 mr-2 mt-1">🏆</span>
+                  <div key={idx} className="flex items-start text-gray-600 dark:text-gray-400">
+                    <span className="text-black dark:text-white mr-2 mt-1">🏆</span>
                     {achievement}
                   </div>
                 ))}
@@ -182,10 +180,10 @@ export default function Experience() {
 
             {/* Relevant Courses */}
             <div>
-              <h5 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Relevant Coursework:</h5>
+              <h5 className="text-lg font-semibold text-black dark:text-white mb-3">Relevant Coursework:</h5>
               <div className="flex flex-wrap gap-2">
                 {education.relevantCourses.map((course) => (
-                  <span key={course} className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm font-medium hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors">
+                  <span key={course} className="px-3 py-1 bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white rounded-full text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                     {course}
                   </span>
                 ))}
@@ -196,29 +194,29 @@ export default function Experience() {
 
         {/* Skills Overview */}
         <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+          <h3 className="text-2xl font-bold text-black dark:text-white mb-8">
             Skills Overview
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700">
               <div className="text-3xl mb-2">🚀</div>
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Frontend</h4>
-              <p className="text-sm text-slate-600 dark:text-slate-300">React, Next.js, TypeScript</p>
+              <h4 className="font-semibold text-black dark:text-white mb-1">Frontend</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">React, Next.js, TypeScript</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700">
               <div className="text-3xl mb-2">⚙️</div>
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Backend</h4>
-              <p className="text-sm text-slate-600 dark:text-slate-300">Node.js, Express, Python</p>
+              <h4 className="font-semibold text-black dark:text-white mb-1">Backend</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Node.js, Express, Python</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700">
               <div className="text-3xl mb-2">🗄️</div>
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Database</h4>
-              <p className="text-sm text-slate-600 dark:text-slate-300">MongoDB, PostgreSQL</p>
+              <h4 className="font-semibold text-black dark:text-white mb-1">Database</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">MongoDB, PostgreSQL</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700">
               <div className="text-3xl mb-2">☁️</div>
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Cloud</h4>
-              <p className="text-sm text-slate-600 dark:text-slate-300">AWS, Vercel, Docker</p>
+              <h4 className="font-semibold text-black dark:text-white mb-1">Cloud</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400">AWS, Vercel, Docker</p>
             </div>
           </div>
         </div>

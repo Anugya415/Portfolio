@@ -1,77 +1,111 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import FloatingParticles from './FloatingParticles';
+
 export default function Hero() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentRole, setCurrentRole] = useState(0);
+
+  const roles = [
+    'Full Stack Developer',
+    'UI/UX Enthusiast',
+    'Problem Solver',
+    'Tech Innovator'
+  ];
+
+  useEffect(() => {
+    // Set visibility after component mounts to prevent hydration mismatch
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    
+    // Start role rotation after initial render
+    const roleInterval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(roleInterval);
+    };
+  }, [roles.length]);
+
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="home" className="relative pt-16 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-blob"></div>
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto text-center relative z-10">
-        <div className="mb-8">
-          <span className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm font-medium mb-6 animate-fade-in">
-            👋 Welcome to my portfolio
-          </span>
+      {/* Floating particles - Client-only to prevent hydration mismatch */}
+      <FloatingParticles />
+
+      <div className={`text-center relative z-10 transition-all duration-1000 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}>
+        {/* Greeting */}
+        <div className="mb-4">
+          <span className="text-lg text-gray-300 font-light">Hello, I'm</span>
         </div>
 
-        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
-          Hi, I'm{' '}
-          <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
-            Anugya Reddy
+        {/* Name */}
+        <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+          <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-x">
+            K. Anugya Reddy
           </span>
         </h1>
 
-        <div className="mb-8">
-          <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-4 font-medium">
-            Full Stack Developer & UI/UX Enthusiast
+        {/* Dynamic role */}
+        <div className="h-16 mb-8">
+          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 font-light">
+            <span className="inline-block min-w-0 transition-all duration-500 ease-in-out">
+              {roles[currentRole]}
+            </span>
+            <span className="animate-pulse text-blue-400">|</span>
           </p>
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full text-sm font-medium">
-              React
-            </span>
-            <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-medium">
-              Next.js
-            </span>
-            <span className="px-3 py-1 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-full text-sm font-medium">
-              Node.js
-            </span>
-          </div>
         </div>
 
-        <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-          Passionate about creating beautiful, functional web applications and solving complex problems with elegant solutions.
-          I love turning ideas into reality through clean code and innovative design.
+        {/* Description */}
+        <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Passionate about creating beautiful, functional, and user-centered digital experiences.
+          I bring ideas to life through code and design.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
           <button
             onClick={() => scrollToSection('projects')}
-            className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+            className="group px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25"
           >
-            <span className="relative z-10">View My Work</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+            View My Work
+            <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
           </button>
-
           <button
             onClick={() => scrollToSection('contact')}
-            className="group border-2 border-slate-300 dark:border-slate-600 hover:border-blue-500 dark:hover:border-blue-400 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+            className="px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/40 backdrop-blur-sm"
           >
             Get In Touch
           </button>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-slate-400 dark:border-slate-600 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-slate-400 dark:bg-slate-600 rounded-full mt-2 animate-pulse"></div>
-          </div>
+        <div className="animate-bounce">
+          <button
+            onClick={() => scrollToSection('about')}
+            className="text-gray-400 hover:text-white transition-colors"
+          >
+            <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+            <p className="text-xs mt-2">Scroll to explore</p>
+          </button>
         </div>
       </div>
     </section>
