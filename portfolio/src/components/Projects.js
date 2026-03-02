@@ -32,8 +32,8 @@ export default function Projects() {
       description: 'A comprehensive full-stack e-commerce platform featuring real-time inventory control, a custom CMS for content management, secure checkout, and dynamic SEO metadata.',
       tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
       category: 'fullstack',
-      github: 'https://github.com/anugya-reddy/Borneo-web',
-      live: 'https://ecommerce-demo.vercel.app', // Please replace with real URL if available
+      github: 'https://github.com/Anugya415/Borneo-web.git',
+      live: null,
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
       status: 'completed',
       featured: true
@@ -56,7 +56,7 @@ export default function Projects() {
       description: 'An Enterprise Resource Planning (ERP) web application developed for the Smart India Hackathon 2025, facilitating comprehensive institutional management.',
       tech: ['Next.js', 'React Hook Form', 'Headless UI', 'Tailwind CSS'],
       category: 'fullstack',
-      github: 'https://github.com/anugya-reddy/SIH-2025',
+      github: 'https://github.com/Anugya415/SIH-2025.git',
       live: null,
       image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
       status: 'in-progress',
@@ -68,8 +68,8 @@ export default function Projects() {
       description: 'A modern, interactive frontend web application featuring rich particle animations, accessible Radix UI components, and fluid Framer Motion transitions.',
       tech: ['Next.js', 'Radix UI', 'Framer Motion', 'tsParticles'],
       category: 'frontend',
-      github: 'https://github.com/anugya-reddy/Groei-web',
-      live: 'https://groei-web-demo.vercel.app', // Please replace with real URL
+      github: 'https://github.com/Anugya415/Groei-web.git',
+      live: null,
       image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop',
       status: 'completed',
       featured: false
@@ -80,8 +80,8 @@ export default function Projects() {
       description: 'A vibrant, beautifully designed web application tailored for a restaurant or dining service layout with responsive styles and smooth navigation.',
       tech: ['Next.js', 'React Icons', 'Tailwind CSS'],
       category: 'frontend',
-      github: 'https://github.com/anugya-reddy/Amour-et-Diner',
-      live: 'https://amour-demo.vercel.app', // Please replace with real URL
+      github: 'https://github.com/Anugya415/Amour-et-Diner.git',
+      live: null,
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
       status: 'completed',
       featured: false
@@ -103,9 +103,9 @@ export default function Projects() {
   });
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="projects" 
+      id="projects"
       className="py-32 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden"
     >
       {/* Background pattern */}
@@ -121,9 +121,8 @@ export default function Projects() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="text-sm font-mono text-black/40 tracking-widest uppercase">03</span>
             <div className="h-px w-12 bg-black/20"></div>
@@ -138,18 +137,16 @@ export default function Projects() {
         </div>
 
         {/* Filter Tabs */}
-        <div className={`flex flex-wrap justify-center gap-3 mb-16 transition-all duration-1000 delay-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`flex flex-wrap justify-center gap-3 mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
           {filters.map((filter) => (
             <button
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeFilter === filter.id
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === filter.id
                   ? 'bg-black text-white shadow-lg'
                   : 'bg-black/5 text-black/70 hover:bg-black/10 hover:text-black border border-black/10'
-              }`}
+                }`}
             >
               {filter.label} <span className="opacity-60">({filter.count})</span>
             </button>
@@ -157,9 +154,8 @@ export default function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-400 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
@@ -167,20 +163,19 @@ export default function Projects() {
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden bg-black/5">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
-                
+
                 {/* Status Badge */}
                 <div className="absolute top-4 left-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                    project.status === 'completed' 
-                      ? 'bg-black text-white' 
+                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${project.status === 'completed'
+                      ? 'bg-black text-white'
                       : 'bg-white/90 text-black'
-                  }`}>
+                    }`}>
                     {project.status === 'in-progress' ? 'In Progress' : 'Completed'}
                   </span>
                 </div>
@@ -226,7 +221,7 @@ export default function Projects() {
                 <h3 className="text-xl font-bold text-black mb-3 group-hover:text-black transition-colors">
                   {project.title}
                 </h3>
-                
+
                 <p className="text-black/70 mb-5 text-sm leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
@@ -275,9 +270,8 @@ export default function Projects() {
         </div>
 
         {/* View More Button */}
-        <div className={`text-center mt-20 transition-all duration-1000 delay-600 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`text-center mt-20 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
           <a
             href="https://github.com/anugya-reddy"
             target="_blank"
