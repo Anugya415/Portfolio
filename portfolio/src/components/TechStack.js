@@ -26,28 +26,28 @@ export default function TechStack() {
 
   const techStack = {
     frontend: [
-      { name: 'React', icon: '⚛️', level: 95 },
       { name: 'Next.js', icon: '▲', level: 90 },
-      { name: 'TypeScript', icon: '📘', level: 85 },
-      { name: 'Tailwind CSS', icon: '🎨', level: 92 },
-      { name: 'JavaScript', icon: '🟨', level: 95 },
-      { name: 'HTML/CSS', icon: '🌐', level: 98 }
+      { name: 'React', icon: '⚛️', level: 95 },
+      { name: 'React Native', icon: '📱', level: 85 },
+      { name: 'Tailwind CSS', icon: '🎨', level: 95 },
+      { name: 'Framer Motion', icon: '✨', level: 80 },
+      { name: 'tsParticles', icon: '🎇', level: 75 }
     ],
     backend: [
-      { name: 'Node.js', icon: '🟢', level: 88 },
-      { name: 'Python', icon: '🐍', level: 82 },
-      { name: 'PostgreSQL', icon: '🐘', level: 80 },
-      { name: 'MongoDB', icon: '🍃', level: 85 },
-      { name: 'GraphQL', icon: '📊', level: 75 },
+      { name: 'Node.js', icon: '🟢', level: 85 },
+      { name: 'Express', icon: '🚂', level: 80 },
+      { name: 'Prisma ORM', icon: '🗄️', level: 85 },
+      { name: 'MongoDB', icon: '🍃', level: 80 },
+      { name: 'Firebase', icon: '🔥', level: 80 },
       { name: 'REST APIs', icon: '🔗', level: 90 }
     ],
     tools: [
-      { name: 'Git', icon: '📚', level: 92 },
-      { name: 'Docker', icon: '🐳', level: 78 },
-      { name: 'AWS', icon: '☁️', level: 75 },
-      { name: 'Figma', icon: '🎨', level: 85 },
+      { name: 'Git & GitHub', icon: '📚', level: 92 },
       { name: 'VS Code', icon: '💻', level: 95 },
-      { name: 'Vercel', icon: '▲', level: 88 }
+      { name: 'Expo', icon: '🚀', level: 85 },
+      { name: 'Vercel', icon: '▲', level: 90 },
+      { name: 'Figma', icon: '🎨', level: 85 },
+      { name: 'Postman', icon: '🚀', level: 88 }
     ]
   };
 
@@ -58,9 +58,9 @@ export default function TechStack() {
   ];
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="skills" 
+      id="skills"
       className="py-32 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden"
     >
       {/* Background pattern */}
@@ -76,9 +76,8 @@ export default function TechStack() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="text-sm font-mono text-black/40 tracking-widest uppercase">02</span>
             <div className="h-px w-12 bg-black/20"></div>
@@ -93,19 +92,17 @@ export default function TechStack() {
         </div>
 
         {/* Category Tabs */}
-        <div className={`flex justify-center mb-16 transition-all duration-1000 delay-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`flex justify-center mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
           <div className="flex space-x-2 bg-black/5 rounded-2xl p-1.5 border border-black/10">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                  activeCategory === category.id
-                    ? 'bg-black text-white shadow-lg'
-                    : 'text-black/70 hover:text-black hover:bg-white/50'
-                }`}
+                className={`flex items-center space-x-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${activeCategory === category.id
+                  ? 'bg-black text-white shadow-lg'
+                  : 'text-black/70 hover:text-black hover:bg-white/50'
+                  }`}
               >
                 <span className="text-lg">{category.icon}</span>
                 <span>{category.label}</span>
@@ -115,9 +112,8 @@ export default function TechStack() {
         </div>
 
         {/* Skills Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-1000 delay-400 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
           {techStack[activeCategory].map((tech, index) => (
             <div
               key={tech.name}
@@ -158,9 +154,8 @@ export default function TechStack() {
         </div>
 
         {/* Additional Info */}
-        <div className={`text-center mt-20 transition-all duration-1000 delay-600 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div className={`text-center mt-20 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
           <p className="text-black/60 mb-8 text-lg">
             Always learning and exploring new technologies to stay at the forefront of development
           </p>
