@@ -1,28 +1,10 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function TechStack() {
-  const [isVisible, setIsVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState('frontend');
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   const techStack = {
     frontend: [
@@ -57,18 +39,38 @@ export default function TechStack() {
     { id: 'tools', label: 'Tools', icon: '🛠️' }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { type: 'spring', stiffness: 200, damping: 20 }
+    }
+  };
+
   return (
     <section
-      ref={sectionRef}
       id="skills"
-      className="py-32 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden"
+      className="py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black relative overflow-hidden transition-colors duration-500"
     >
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
         <div className="absolute inset-0" style={{
           backgroundImage: `
-            linear-gradient(90deg, #000 1px, transparent 1px),
-            linear-gradient(#000 1px, transparent 1px)
+            linear-gradient(90deg, currentColor 1px, transparent 1px),
+            linear-gradient(currentColor 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px'
         }}></div>
@@ -76,101 +78,138 @@ export default function TechStack() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
           <div className="inline-flex items-center gap-2 mb-6">
-            <span className="text-sm font-mono text-black/40 tracking-widest uppercase">02</span>
-            <div className="h-px w-12 bg-black/20"></div>
-            <span className="text-sm font-mono text-black/60 tracking-widest uppercase">Skills</span>
+            <span className="text-sm font-mono text-black/40 dark:text-white/40 tracking-widest uppercase">02</span>
+            <div className="h-px w-12 bg-black/20 dark:bg-white/20"></div>
+            <span className="text-sm font-mono text-black/60 dark:text-white/60 tracking-widest uppercase">Skills</span>
           </div>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black mb-6 tracking-tight">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black dark:text-white mb-6 tracking-tight">
             Skills & Technologies
           </h2>
-          <p className="text-xl text-black/60 max-w-2xl mx-auto">
+          <p className="text-xl text-black/60 dark:text-white/60 max-w-2xl mx-auto">
             Technologies I work with to bring ideas to life
           </p>
-        </div>
+        </motion.div>
 
         {/* Category Tabs */}
-        <div className={`flex justify-center mb-16 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-          <div className="flex space-x-2 bg-black/5 rounded-2xl p-1.5 border border-black/10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-16"
+        >
+          <div className="flex space-x-2 bg-black/5 dark:bg-white/5 rounded-2xl p-1.5 border border-black/10 dark:border-white/10">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${activeCategory === category.id
-                  ? 'bg-black text-white shadow-lg'
-                  : 'text-black/70 hover:text-black hover:bg-white/50'
+                className={`flex items-center space-x-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 relative z-10 ${activeCategory === category.id
+                    ? 'text-white dark:text-black shadow-lg'
+                    : 'text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/10'
                   }`}
               >
+                {activeCategory === category.id && (
+                  <motion.div
+                    layoutId="activeTabBadge"
+                    className="absolute inset-0 bg-black dark:bg-white rounded-xl -z-10"
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
                 <span className="text-lg">{category.icon}</span>
                 <span>{category.label}</span>
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Skills Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-          {techStack[activeCategory].map((tech, index) => (
-            <div
-              key={tech.name}
-              className="bg-white border-2 border-black/10 rounded-2xl p-6 card-hover group"
+        <div className="min-h-[400px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              exit={{ opacity: 0, y: -20, transition: { duration: 0.2 } }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <span className="text-3xl group-hover:scale-110 transition-transform duration-200">
-                    {tech.icon}
-                  </span>
-                  <h3 className="text-lg font-bold text-black">
-                    {tech.name}
-                  </h3>
-                </div>
-                <span className="text-black/60 text-sm font-semibold">
-                  {tech.level}%
-                </span>
-              </div>
+              {techStack[activeCategory].map((tech) => (
+                <motion.div
+                  key={tech.name}
+                  variants={cardVariants}
+                  whileHover={{ y: -5, boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)' }}
+                  className="bg-white dark:bg-[#0a0a0a] border-2 border-black/10 dark:border-white/10 rounded-2xl p-6 group"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-3xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                        {tech.icon}
+                      </span>
+                      <h3 className="text-lg font-bold text-black dark:text-white">
+                        {tech.name}
+                      </h3>
+                    </div>
+                    <span className="text-black/60 dark:text-white/60 text-sm font-semibold">
+                      {tech.level}%
+                    </span>
+                  </div>
 
-              {/* Progress Bar */}
-              <div className="w-full bg-black/5 rounded-full h-2.5 mb-2 overflow-hidden">
-                <div
-                  className="h-full bg-black rounded-full transition-all duration-1000 ease-out"
-                  style={{
-                    width: isVisible ? `${tech.level}%` : '0%',
-                    transitionDelay: `${index * 100 + 500}ms`
-                  }}
-                />
-              </div>
+                  {/* Progress Bar */}
+                  <div className="w-full bg-black/5 dark:bg-white/10 rounded-full h-2.5 mb-2 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${tech.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                      className="h-full bg-black dark:bg-white rounded-full"
+                    />
+                  </div>
 
-              {/* Skill Level Indicator */}
-              <div className="flex justify-between text-xs text-black/40 font-medium">
-                <span>Beginner</span>
-                <span>Expert</span>
-              </div>
-            </div>
-          ))}
+                  {/* Skill Level Indicator */}
+                  <div className="flex justify-between text-xs text-black/40 dark:text-white/40 font-medium pt-1">
+                    <span>Beginner</span>
+                    <span>Expert</span>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Additional Info */}
-        <div className={`text-center mt-20 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-          <p className="text-black/60 mb-8 text-lg">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mt-20"
+        >
+          <p className="text-black/60 dark:text-white/60 mb-8 text-lg">
             Always learning and exploring new technologies to stay at the forefront of development
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {['Learning', 'Experimenting', 'Building', 'Growing'].map((action, index) => (
-              <span
+              <motion.span
                 key={action}
-                className="px-5 py-2.5 bg-black/5 border border-black/10 text-black rounded-full text-sm font-medium hover:bg-black hover:text-white transition-all cursor-default"
-                style={{ animationDelay: `${index * 200}ms` }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 + index * 0.1 }}
+                className="px-5 py-2.5 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black dark:text-white rounded-full text-sm font-medium hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-default"
               >
                 {action}
-              </span>
+              </motion.span>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

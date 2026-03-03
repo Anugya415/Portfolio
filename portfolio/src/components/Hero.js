@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
   const [currentRole, setCurrentRole] = useState(0);
 
   const roles = [
@@ -14,83 +14,125 @@ export default function Hero() {
   ];
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    
     const roleInterval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
     }, 3000);
 
-    return () => {
-      clearTimeout(timer);
-      clearInterval(roleInterval);
-    };
+    return () => clearInterval(roleInterval);
   }, [roles.length]);
 
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: 'spring', stiffness: 300, damping: 24 },
+    },
+  };
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white overflow-hidden pt-32">
+    <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white dark:bg-black overflow-hidden pt-32 transition-colors duration-500">
       {/* Geometric Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
         <div className="absolute inset-0" style={{
           backgroundImage: `
-            linear-gradient(90deg, #000 1px, transparent 1px),
-            linear-gradient(#000 1px, transparent 1px)
+            linear-gradient(90deg, currentColor 1px, transparent 1px),
+            linear-gradient(currentColor 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px'
         }}></div>
       </div>
 
       {/* Animated accent lines */}
-      <div className="absolute top-1/4 left-0 w-1/3 h-px bg-black/10 transform -rotate-12"></div>
-      <div className="absolute bottom-1/4 right-0 w-1/3 h-px bg-black/10 transform rotate-12"></div>
+      <motion.div
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ duration: 1.5, delay: 0.5 }}
+        className="absolute top-1/4 left-0 w-1/3 h-px bg-black/10 dark:bg-white/10 transform -rotate-12 origin-left"
+      />
+      <motion.div
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ duration: 1.5, delay: 0.7 }}
+        className="absolute bottom-1/4 right-0 w-1/3 h-px bg-black/10 dark:bg-white/10 transform rotate-12 origin-right"
+      />
 
-      <div className={`max-w-5xl mx-auto text-center relative z-10 transition-all duration-1000 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      }`}>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="max-w-5xl mx-auto text-center relative z-10"
+      >
         {/* Greeting Badge */}
-        <div className="mb-6 inline-block">
-          <span className="px-4 py-2 bg-black/5 border border-black/10 rounded-full text-sm font-medium text-black/70">
+        <motion.div variants={itemVariants} className="mb-6 inline-block">
+          <span className="px-4 py-2 bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 rounded-full text-sm font-medium text-black/70 dark:text-white/70 backdrop-blur-sm">
             Hello, I'm
           </span>
-        </div>
+        </motion.div>
 
-        {/* Name with decorative underline */}
-        <h1 className="text-6xl sm:text-7xl lg:text-9xl font-bold text-black mb-8 leading-[1.1] tracking-tight">
+        {/* Name with elegant entrance */}
+        <motion.h1
+          variants={itemVariants}
+          className="text-6xl sm:text-7xl lg:text-9xl font-bold text-black dark:text-white mb-8 leading-[1.1] tracking-tight"
+        >
           K. Anugya Reddy
-        </h1>
-        
-        <div className="flex items-center justify-center mb-8">
-          <div className="h-px w-24 bg-black/20"></div>
-        </div>
+        </motion.h1>
 
-        {/* Dynamic role with smooth transition */}
-        <div className="h-20 mb-10 flex items-center justify-center">
-          <p className="text-2xl sm:text-3xl lg:text-4xl text-black/60 font-light">
-            <span className="inline-block min-w-0 transition-all duration-500 ease-in-out">
+        <motion.div variants={itemVariants} className="flex items-center justify-center mb-8">
+          <div className="h-px w-24 bg-black/20 dark:bg-white/20"></div>
+        </motion.div>
+
+        {/* Dynamic role */}
+        <motion.div variants={itemVariants} className="h-20 mb-10 flex items-center justify-center overflow-hidden">
+          <p className="text-2xl sm:text-3xl lg:text-4xl text-black/60 dark:text-white/60 font-light">
+            <motion.span
+              key={currentRole}
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -40, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="inline-block min-w-0"
+            >
               {roles[currentRole]}
-            </span>
-            <span className="animate-pulse text-black ml-2">|</span>
+            </motion.span>
+            <span className="animate-pulse text-black dark:text-white ml-2">|</span>
           </p>
-        </div>
+        </motion.div>
 
         {/* Description */}
-        <p className="text-lg sm:text-xl text-black/60 mb-16 max-w-2xl mx-auto leading-relaxed font-light">
+        <motion.p
+          variants={itemVariants}
+          className="text-lg sm:text-xl text-black/60 dark:text-white/60 mb-16 max-w-2xl mx-auto leading-relaxed font-light"
+        >
           Crafting digital experiences that blend functionality with elegance.
           <br className="hidden sm:block" />
           Transforming ideas into reality through code and design.
-        </p>
+        </motion.p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20"
+        >
           <a
             href="/resume.pdf"
             download
-            className="group relative px-10 py-4 bg-black text-white rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-black/20 overflow-hidden inline-flex items-center"
+            className="group relative px-10 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-black/20 dark:hover:shadow-white/20 overflow-hidden inline-flex items-center"
           >
             <span className="relative z-10 flex items-center">
               Download CV Resume
@@ -98,30 +140,35 @@ export default function Hero() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </span>
-            <div className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+            <div className="absolute inset-0 bg-white/10 dark:bg-black/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
           </a>
-          
+
           <button
             onClick={() => scrollToSection('contact')}
-            className="px-10 py-4 border-2 border-black text-black rounded-full font-semibold text-base transition-all duration-300 hover:bg-black hover:text-white hover:scale-105"
+            className="px-10 py-4 border-2 border-black dark:border-white text-black dark:text-white rounded-full font-semibold text-base transition-all duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:scale-105"
           >
             Get In Touch
           </button>
-        </div>
+        </motion.div>
 
         {/* Scroll indicator - centered below buttons */}
-        <div className="flex justify-center items-center mt-8 animate-bounce">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="flex justify-center items-center mt-8 animate-bounce"
+        >
           <button
             onClick={() => scrollToSection('about')}
-            className="flex flex-col items-center text-black/40 hover:text-black transition-colors group"
+            className="flex flex-col items-center text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white transition-colors group"
           >
             <span className="text-xs mb-2 font-medium">Scroll</span>
             <svg className="w-5 h-5 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
 
 export default function Contact() {
@@ -13,25 +14,6 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -83,18 +65,36 @@ export default function Contact() {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
   return (
-    <section 
-      ref={sectionRef}
-      id="contact" 
-      className="py-32 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden"
+    <section
+      id="contact"
+      className="py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black relative overflow-hidden transition-colors duration-500"
     >
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
         <div className="absolute inset-0" style={{
           backgroundImage: `
-            linear-gradient(90deg, #000 1px, transparent 1px),
-            linear-gradient(#000 1px, transparent 1px)
+            linear-gradient(90deg, currentColor 1px, transparent 1px),
+            linear-gradient(currentColor 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px'
         }}></div>
@@ -102,89 +102,105 @@ export default function Contact() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
           <div className="inline-flex items-center gap-2 mb-6">
-            <span className="text-sm font-mono text-black/40 tracking-widest uppercase">04</span>
-            <div className="h-px w-12 bg-black/20"></div>
-            <span className="text-sm font-mono text-black/60 tracking-widest uppercase">Contact</span>
+            <span className="text-sm font-mono text-black/40 dark:text-white/40 tracking-widest uppercase">04</span>
+            <div className="h-px w-12 bg-black/20 dark:bg-white/20"></div>
+            <span className="text-sm font-mono text-black/60 dark:text-white/60 tracking-widest uppercase">Contact</span>
           </div>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black mb-6 tracking-tight">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black dark:text-white mb-6 tracking-tight">
             Let's Connect
           </h2>
-          <p className="text-xl text-black/60 max-w-2xl mx-auto">
+          <p className="text-xl text-black/60 dark:text-white/60 max-w-2xl mx-auto">
             Have a project in mind? Let's create something amazing together.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Information */}
-          <div className={`space-y-8 transition-all duration-1000 delay-200 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-          }`}>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="space-y-8"
+          >
             <div>
-              <h3 className="text-2xl font-bold text-black mb-8">Get in Touch</h3>
-              
+              <h3 className="text-2xl font-bold text-black dark:text-white mb-8">Get in Touch</h3>
+
               {/* Contact Cards */}
               <div className="space-y-4 mb-8">
-                {contactInfo.map((info, index) => {
+                {contactInfo.map((info) => {
                   const IconComponent = info.icon;
                   return (
-                    <div
+                    <motion.div
+                      variants={itemVariants}
                       key={info.title}
-                      className="bg-white border-2 border-black/10 rounded-2xl p-6 card-hover group"
+                      className="bg-white dark:bg-[#0a0a0a] border-2 border-black/10 dark:border-white/10 rounded-2xl p-6 hover:border-black/30 dark:hover:border-white/30 transition-all group"
                     >
                       <div className="flex items-center space-x-4">
-                        <div className="p-3 bg-black rounded-xl group-hover:scale-110 transition-transform">
-                          <IconComponent className="text-white text-xl" />
+                        <div className="p-3 bg-black dark:bg-white rounded-xl group-hover:scale-110 transition-transform">
+                          <IconComponent className="text-white dark:text-black text-xl" />
                         </div>
                         <div className="flex-1">
-                          <h4 className="text-lg font-bold text-black mb-1">{info.title}</h4>
-                          <p className="text-sm text-black/60 mb-1">{info.description}</p>
+                          <h4 className="text-lg font-bold text-black dark:text-white mb-1">{info.title}</h4>
+                          <p className="text-sm text-black/60 dark:text-white/60 mb-1">{info.description}</p>
                           {info.link ? (
                             <a
                               href={info.link}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-black hover:text-black/70 font-medium transition-colors"
+                              className="text-black dark:text-white hover:text-black/70 dark:hover:text-white/70 font-medium transition-colors"
                             >
                               {info.value}
                             </a>
                           ) : (
-                            <span className="text-black/80">{info.value}</span>
+                            <span className="text-black/80 dark:text-white/80">{info.value}</span>
                           )}
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div className={`transition-all duration-1000 delay-400 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-          }`}>
-            <div className="bg-white border-2 border-black/10 rounded-3xl p-8 lg:p-10 card-hover">
-              <h3 className="text-2xl font-bold text-black mb-8">Send Message</h3>
-              
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="bg-white dark:bg-[#0a0a0a] border-2 border-black/10 dark:border-white/10 rounded-3xl p-8 lg:p-10">
+              <h3 className="text-2xl font-bold text-black dark:text-white mb-8">Send Message</h3>
+
               {submitted ? (
-                <div className="text-center py-16">
-                  <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
-                    ✓
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center py-16"
+                >
+                  <div className="w-20 h-20 bg-black dark:bg-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                    <span className="text-white dark:text-black">✓</span>
                   </div>
-                  <h4 className="text-2xl font-bold text-black mb-3">Message Sent!</h4>
-                  <p className="text-black/70">
+                  <h4 className="text-2xl font-bold text-black dark:text-white mb-3">Message Sent!</h4>
+                  <p className="text-black/70 dark:text-white/70">
                     Thank you for reaching out. I'll get back to you as soon as possible.
                   </p>
-                </div>
+                </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-black/80 text-sm font-semibold mb-2">
+                      <label htmlFor="name" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
                         Name *
                       </label>
                       <input
@@ -194,13 +210,13 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-black/5 border-2 border-black/10 rounded-xl focus:ring-2 focus:ring-black focus:border-black text-black placeholder-black/30 transition-all"
+                        className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 transition-all outline-none"
                         placeholder="Your name"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-black/80 text-sm font-semibold mb-2">
+                      <label htmlFor="email" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
                         Email *
                       </label>
                       <input
@@ -210,14 +226,14 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-black/5 border-2 border-black/10 rounded-xl focus:ring-2 focus:ring-black focus:border-black text-black placeholder-black/30 transition-all"
+                        className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 transition-all outline-none"
                         placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-black/80 text-sm font-semibold mb-2">
+                    <label htmlFor="subject" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
                       Subject
                     </label>
                     <input
@@ -226,13 +242,13 @@ export default function Contact() {
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-black/5 border-2 border-black/10 rounded-xl focus:ring-2 focus:ring-black focus:border-black text-black placeholder-black/30 transition-all"
+                      className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 transition-all outline-none"
                       placeholder="What's this about?"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-black/80 text-sm font-semibold mb-2">
+                    <label htmlFor="message" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
                       Message *
                     </label>
                     <textarea
@@ -242,7 +258,7 @@ export default function Contact() {
                       onChange={handleInputChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 bg-black/5 border-2 border-black/10 rounded-xl focus:ring-2 focus:ring-black focus:border-black text-black placeholder-black/30 resize-none transition-all"
+                      className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 resize-none transition-all outline-none"
                       placeholder="Tell me about your project or just say hello!"
                     ></textarea>
                   </div>
@@ -250,11 +266,11 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-black hover:bg-black/90 disabled:bg-black/30 text-white disabled:text-black/50 px-6 py-4 rounded-xl font-semibold text-base transition-all duration-300 disabled:cursor-not-allowed hover:scale-[1.02] hover:shadow-xl"
+                    className="w-full bg-black dark:bg-white hover:bg-black/90 dark:hover:bg-white/90 disabled:bg-black/30 dark:disabled:bg-white/30 text-white dark:text-black disabled:text-black/50 dark:disabled:text-white/50 px-6 py-4 rounded-xl font-semibold text-base transition-all duration-300 disabled:cursor-not-allowed hover:scale-[1.02] hover:shadow-xl"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white dark:border-black mr-2"></div>
                         Sending...
                       </div>
                     ) : (
@@ -264,7 +280,7 @@ export default function Contact() {
                 </form>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
