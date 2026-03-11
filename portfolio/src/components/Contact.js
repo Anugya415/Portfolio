@@ -87,20 +87,10 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black relative overflow-hidden transition-colors duration-500"
+      className="scroll-mt-16 sm:scroll-mt-24"
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(90deg, currentColor 1px, transparent 1px),
-            linear-gradient(currentColor 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -142,7 +132,7 @@ export default function Contact() {
                     <motion.div
                       variants={itemVariants}
                       key={info.title}
-                      className="bg-white dark:bg-[#0a0a0a] border-2 border-black/10 dark:border-white/10 rounded-2xl p-6 hover:border-black/30 dark:hover:border-white/30 transition-all group"
+                      className="bg-transparent border border-black/10 dark:border-white/10 rounded-2xl p-6 hover:border-black/30 dark:hover:border-white/30 transition-all group"
                     >
                       <div className="flex items-center space-x-4">
                         <div className="p-3 bg-black dark:bg-white rounded-xl group-hover:scale-110 transition-transform">
@@ -179,7 +169,7 @@ export default function Contact() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="bg-white dark:bg-[#0a0a0a] border-2 border-black/10 dark:border-white/10 rounded-3xl p-8 lg:p-10">
+            <div className="bg-transparent border border-black/10 dark:border-white/10 rounded-3xl p-8 lg:p-10">
               <h3 className="text-2xl font-bold text-black dark:text-white mb-8">Send Message</h3>
 
               {submitted ? (

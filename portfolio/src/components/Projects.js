@@ -106,20 +106,10 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black relative overflow-hidden transition-colors duration-500"
+      className="scroll-mt-16 sm:scroll-mt-24"
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(90deg, currentColor 1px, transparent 1px),
-            linear-gradient(currentColor 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -129,14 +119,14 @@ export default function Projects() {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 mb-6">
-            <span className="text-sm font-mono text-black/40 dark:text-white/40 tracking-widest uppercase">03</span>
-            <div className="h-px w-12 bg-black/20 dark:bg-white/20"></div>
-            <span className="text-sm font-mono text-black/60 dark:text-white/60 tracking-widest uppercase">Projects</span>
+            <span className="text-sm font-mono text-zinc-500 dark:text-zinc-600 tracking-widest uppercase">03</span>
+            <div className="h-px w-12 bg-zinc-300 dark:bg-zinc-700"></div>
+            <span className="text-sm font-mono text-zinc-700 dark:text-zinc-400 tracking-widest uppercase">Projects</span>
           </div>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black dark:text-white mb-6 tracking-tight">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
             Featured Projects
           </h2>
-          <p className="text-xl text-black/60 dark:text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-black/60 dark:text-white/60 max-w-2xl mx-auto">
             A collection of my recent work and creative solutions
           </p>
         </motion.div>
@@ -153,18 +143,11 @@ export default function Projects() {
             <button
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 relative ${activeFilter === filter.id
-                  ? 'text-white dark:text-black shadow-lg'
-                  : 'bg-black/5 dark:bg-white/5 text-black/70 dark:text-white/70 hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white border border-black/10 dark:border-white/10'
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 border-b-2 ${activeFilter === filter.id
+                  ? 'text-zinc-900 dark:text-zinc-50 border-zinc-900 dark:border-zinc-50'
+                  : 'text-zinc-500 dark:text-zinc-600 border-transparent hover:text-zinc-900 dark:hover:text-zinc-300'
                 }`}
             >
-              {activeFilter === filter.id && (
-                <motion.div
-                  layoutId="activeProjectFilter"
-                  className="absolute inset-0 bg-black dark:bg-white rounded-full -z-10"
-                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                />
-              )}
               {filter.label} <span className={activeFilter === filter.id ? 'opacity-80' : 'opacity-60'}>({filter.count})</span>
             </button>
           ))}
@@ -189,10 +172,10 @@ export default function Projects() {
                 animate="visible"
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className="group bg-white dark:bg-[#0a0a0a] border-2 border-black/10 dark:border-white/10 rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-white/10 transition-shadow duration-300"
+                className="group flex flex-col gap-6 w-full"
               >
                 {/* Project Image */}
-                <div className="relative h-48 overflow-hidden bg-black/5 dark:bg-white/5">
+                <div className="relative h-64 overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                   <motion.img
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.4 }}
@@ -249,21 +232,21 @@ export default function Projects() {
                 </div>
 
                 {/* Project Content */}
-                <div className="p-6 relative z-20 bg-white dark:bg-[#0a0a0a]">
-                  <h3 className="text-xl font-bold text-black dark:text-white mb-3 group-hover:text-black/80 dark:group-hover:text-white/80 transition-colors">
+                <div className="relative z-20 flex flex-col flex-1">
+                  <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                     {project.title}
                   </h3>
 
-                  <p className="text-black/70 dark:text-white/70 mb-5 text-sm leading-relaxed line-clamp-3">
+                  <p className="text-zinc-600 dark:text-zinc-400 mb-5 text-sm leading-relaxed line-clamp-3">
                     {project.description}
                   </p>
 
                   {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-5">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black dark:text-white rounded-lg text-xs font-medium"
+                        className="text-zinc-500 dark:text-zinc-400 text-xs font-bold uppercase tracking-wider"
                       >
                         {tech}
                       </span>
@@ -271,8 +254,8 @@ export default function Projects() {
                   </div>
 
                   {/* Project Links */}
-                  <div className="flex items-center justify-between pt-4 border-t border-black/10 dark:border-white/10">
-                    <span className="text-xs text-black/50 dark:text-white/50 font-medium uppercase tracking-wider">
+                  <div className="flex items-center justify-between pt-4 mt-auto border-t border-zinc-200 dark:border-zinc-800">
+                    <span className="text-xs text-zinc-500 dark:text-zinc-500 font-bold uppercase tracking-widest">
                       {project.category}
                     </span>
                     <div className="flex gap-4">
@@ -281,7 +264,7 @@ export default function Projects() {
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white text-sm font-medium transition-colors flex items-center gap-1"
+                          className="text-zinc-900 dark:text-zinc-50 hover:text-teal-600 dark:hover:text-teal-400 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2"
                         >
                           Live <FaExternalLinkAlt className="text-xs" />
                         </a>
@@ -290,7 +273,7 @@ export default function Projects() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white text-sm font-medium transition-colors flex items-center gap-1"
+                        className="text-zinc-900 dark:text-zinc-50 hover:text-teal-600 dark:hover:text-teal-400 text-sm font-bold uppercase tracking-wider transition-colors flex items-center gap-2"
                       >
                         Code <FaGithub className="text-xs" />
                       </a>
@@ -314,10 +297,10 @@ export default function Projects() {
             href="https://github.com/anugya-reddy"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-black/20 dark:hover:shadow-white/20"
+            className="inline-flex items-center gap-2 pb-1 border-b-2 border-zinc-900 dark:border-zinc-50 text-zinc-900 dark:text-zinc-50 font-bold text-sm uppercase tracking-widest transition-all hover:text-teal-600 dark:hover:text-teal-400 hover:border-teal-600 dark:hover:border-teal-400"
           >
             View All Projects
-            <FaExternalLinkAlt className="text-sm" />
+            <FaExternalLinkAlt className="text-xs" />
           </a>
         </motion.div>
       </div>

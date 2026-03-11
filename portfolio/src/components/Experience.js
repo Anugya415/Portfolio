@@ -51,66 +51,63 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black">
-      <div className="max-w-6xl mx-auto">
+    <section id="experience" className="scroll-mt-16 sm:scroll-mt-24">
+      <div className="">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-black dark:text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-zinc-900 dark:text-zinc-50 mb-4">
             Experience & Education
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            My journey in software development and academic background
-          </p>
         </div>
 
         {/* Experience Section */}
         <div className="mb-20">
-          <h3 className="text-3xl font-bold text-black dark:text-white mb-12 text-center">
+          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mb-12 text-center">
             Professional Experience
           </h3>
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-black dark:bg-white"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-[1px] bg-zinc-200 dark:bg-zinc-800"></div>
 
-            <div className="space-y-12">
+            <div className="space-y-16">
               {experiences.map((exp, index) => (
-                <div key={exp.id} className="relative flex items-start">
+                <div key={exp.id} className="relative flex items-start group">
                   {/* Timeline dot */}
-                  <div className="absolute left-6 w-4 h-4 bg-black dark:bg-white rounded-full border-4 border-white dark:border-black shadow-lg"></div>
+                  <div className="absolute left-[29px] w-2 h-2 bg-zinc-400 dark:bg-zinc-600 rounded-full group-hover:bg-zinc-900 dark:group-hover:bg-zinc-50 group-hover:scale-150 transition-all duration-300 mt-2"></div>
 
                   {/* Content */}
-                  <div className="ml-16 bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow-xl border-2 border-gray-200 dark:border-gray-700 w-full hover:shadow-2xl transition-all duration-300 hover:border-black dark:hover:border-white">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                  <div className="ml-16 w-full">
+                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-4 gap-2">
                       <div>
-                        <h4 className="text-2xl font-bold text-black dark:text-white mb-1">
+                        <h4 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                           {exp.title}
                         </h4>
-                        <p className="text-black dark:text-white font-medium mb-2">
+                        <p className="text-sm text-zinc-700 dark:text-zinc-300 font-medium">
                           {exp.company}
                         </p>
                       </div>
-                      <div className="text-right">
-                        <span className="inline-block px-3 py-1 bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white rounded-full text-sm font-medium mb-2">
+                      <div className="text-left md:text-right mt-2 md:mt-0 opacity-80">
+                        <span className="inline-block md:ml-4 text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">
                           {exp.type}
                         </span>
-                        <p className="text-gray-500 dark:text-gray-400 text-sm">
+                        <p className="text-zinc-500 dark:text-zinc-400 text-sm font-mono tracking-tight">
                           {exp.period}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
                       {exp.description}
                     </p>
 
                     {/* Achievements */}
-                    <div className="mb-6">
-                      <h5 className="text-lg font-semibold text-black dark:text-white mb-3">Key Achievements:</h5>
+                    <div className="mb-6 hidden">
+                      <h5 className="text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-50 mb-3">Key Achievements</h5>
                       <ul className="space-y-2">
                         {exp.achievements.map((achievement, idx) => (
-                          <li key={idx} className="flex items-start text-gray-600 dark:text-gray-400">
-                            <span className="text-black dark:text-white mr-2 mt-1">✓</span>
+                          <li key={idx} className="flex items-start text-zinc-600 dark:text-zinc-400">
+                            <span className="text-zinc-400 dark:text-zinc-500 mr-3 mt-1 text-xs">▹</span>
                             {achievement}
                           </li>
                         ))}
@@ -118,11 +115,10 @@ export default function Experience() {
                     </div>
 
                     {/* Skills */}
-                    <div>
-                      <h5 className="text-lg font-semibold text-black dark:text-white mb-3">Technologies Used:</h5>
+                    <div className="mt-4">
                       <div className="flex flex-wrap gap-2">
                         {exp.skills.map((skill) => (
-                          <span key={skill} className="px-3 py-1 bg-black dark:bg-white text-white dark:text-black border-2 border-black dark:border-white rounded-full text-sm font-medium">
+                          <span key={skill} className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800/50 text-teal-700 dark:text-teal-300 rounded-full text-xs font-medium">
                             {skill}
                           </span>
                         ))}
@@ -137,31 +133,26 @@ export default function Experience() {
 
         {/* Education Section */}
         <div>
-          <h3 className="text-3xl font-bold text-black dark:text-white mb-12 text-center">
+          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mb-12 text-center mt-32">
             Education
           </h3>
 
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow-xl border-2 border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 hover:border-black dark:hover:border-white">
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+          <div className="w-full">
+            <div className="flex flex-col lg:flex-row lg:items-baseline lg:justify-between mb-6">
               <div className="flex-1">
-                <h4 className="text-2xl font-bold text-black dark:text-white mb-2">
+                <h4 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 mb-2">
                   {education.degree}
                 </h4>
-                <p className="text-black dark:text-white font-medium mb-1">
+                <p className="text-sm text-zinc-700 dark:text-zinc-300 font-medium mb-1">
                   {education.university}
                 </p>
-                <p className="text-gray-500 dark:text-gray-400 text-sm">
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm font-mono">
                   {education.location} • {education.period}
                 </p>
               </div>
-              <div className="mt-4 lg:mt-0 lg:text-right">
-                <div className="inline-block px-4 py-2 bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white rounded-lg font-medium">
-                  🎓 Graduated with Honors
-                </div>
-              </div>
             </div>
 
-            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed max-w-2xl">
               {education.description}
             </p>
 
@@ -179,11 +170,10 @@ export default function Experience() {
             </div>
 
             {/* Relevant Courses */}
-            <div>
-              <h5 className="text-lg font-semibold text-black dark:text-white mb-3">Relevant Coursework:</h5>
+            <div className="mt-8">
               <div className="flex flex-wrap gap-2">
                 {education.relevantCourses.map((course) => (
-                  <span key={course} className="px-3 py-1 bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white rounded-full text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                  <span key={course} className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800/50 text-teal-700 dark:text-teal-300 rounded-full text-xs font-medium">
                     {course}
                   </span>
                 ))}
@@ -193,30 +183,26 @@ export default function Experience() {
         </div>
 
         {/* Skills Overview */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-black dark:text-white mb-8">
+        <div className="mt-32">
+          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mb-12 text-center">
             Skills Overview
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700">
-              <div className="text-3xl mb-2">🚀</div>
-              <h4 className="font-semibold text-black dark:text-white mb-1">Frontend</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">React, Next.js, TypeScript</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="group">
+              <h4 className="font-bold text-zinc-900 dark:text-zinc-50 mb-2 group-hover:text-teal-500 transition-colors">Frontend</h4>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">React, Next.js, TypeScript</p>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700">
-              <div className="text-3xl mb-2">⚙️</div>
-              <h4 className="font-semibold text-black dark:text-white mb-1">Backend</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Node.js, Express, Python</p>
+            <div className="group">
+              <h4 className="font-bold text-zinc-900 dark:text-zinc-50 mb-2 group-hover:text-teal-500 transition-colors">Backend</h4>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">Node.js, Express, Python</p>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700">
-              <div className="text-3xl mb-2">🗄️</div>
-              <h4 className="font-semibold text-black dark:text-white mb-1">Database</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">MongoDB, PostgreSQL</p>
+            <div className="group">
+              <h4 className="font-bold text-zinc-900 dark:text-zinc-50 mb-2 group-hover:text-teal-500 transition-colors">Database</h4>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">MongoDB, PostgreSQL</p>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-gray-200 dark:border-gray-700">
-              <div className="text-3xl mb-2">☁️</div>
-              <h4 className="font-semibold text-black dark:text-white mb-1">Cloud</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">AWS, Vercel, Docker</p>
+            <div className="group">
+              <h4 className="font-bold text-zinc-900 dark:text-zinc-50 mb-2 group-hover:text-teal-500 transition-colors">Cloud</h4>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">AWS, Vercel, Docker</p>
             </div>
           </div>
         </div>

@@ -63,20 +63,10 @@ export default function TechStack() {
   return (
     <section
       id="skills"
-      className="py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black relative overflow-hidden transition-colors duration-500"
+      className="scroll-mt-16 sm:scroll-mt-24"
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(90deg, currentColor 1px, transparent 1px),
-            linear-gradient(currentColor 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -34,7 +34,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-white dark:bg-black border-t-2 border-black/10 dark:border-white/10 py-16 transition-colors duration-500">
+    <footer className="bg-transparent border-t border-black/10 dark:border-white/10 py-16 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
