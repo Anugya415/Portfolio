@@ -76,14 +76,14 @@ export default function TechStack() {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 mb-6">
-            <span className="text-sm font-mono text-black/40 dark:text-white/40 tracking-widest uppercase">02</span>
-            <div className="h-px w-12 bg-black/20 dark:bg-white/20"></div>
-            <span className="text-sm font-mono text-black/60 dark:text-white/60 tracking-widest uppercase">Skills</span>
+            <span className="text-sm font-mono text-zinc-500 dark:text-zinc-600 tracking-widest uppercase">02</span>
+            <div className="h-px w-12 bg-zinc-300 dark:bg-zinc-700"></div>
+            <span className="text-sm font-mono text-zinc-700 dark:text-zinc-400 tracking-widest uppercase">Skills</span>
           </div>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-black dark:text-white mb-6 tracking-tight">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
             Skills & Technologies
           </h2>
-          <p className="text-xl text-black/60 dark:text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
             Technologies I work with to bring ideas to life
           </p>
         </motion.div>
@@ -95,23 +95,16 @@ export default function TechStack() {
           viewport={{ once: true }}
           className="flex justify-center mb-16"
         >
-          <div className="flex space-x-2 bg-black/5 dark:bg-white/5 rounded-2xl p-1.5 border border-black/10 dark:border-white/10">
+          <div className="flex space-x-2 border-b border-zinc-200 dark:border-zinc-800">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 relative z-10 ${activeCategory === category.id
-                    ? 'text-white dark:text-black shadow-lg'
-                    : 'text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/10'
+                className={`py-4 px-6 text-sm font-bold uppercase tracking-widest transition-all duration-300 relative flex items-center space-x-2 ${activeCategory === category.id
+                    ? 'text-zinc-900 dark:text-zinc-50 border-b-2 border-zinc-900 dark:border-zinc-50'
+                    : 'text-zinc-500 dark:text-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-300 border-transparent'
                   }`}
               >
-                {activeCategory === category.id && (
-                  <motion.div
-                    layoutId="activeTabBadge"
-                    className="absolute inset-0 bg-black dark:bg-white rounded-xl -z-10"
-                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
                 <span className="text-lg">{category.icon}</span>
                 <span>{category.label}</span>
               </button>
@@ -129,44 +122,46 @@ export default function TechStack() {
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               exit={{ opacity: 0, y: -20, transition: { duration: 0.2 } }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
             >
               {techStack[activeCategory].map((tech) => (
                 <motion.div
                   key={tech.name}
                   variants={cardVariants}
-                  whileHover={{ y: -5, boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)' }}
-                  className="bg-white dark:bg-[#0a0a0a] border-2 border-black/10 dark:border-white/10 rounded-2xl p-6 group"
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  className="bg-white dark:bg-zinc-900 flex flex-col justify-between border border-zinc-200 dark:border-zinc-800 rounded-[32px] p-6 sm:p-8 w-full mx-auto group shadow-sm transition-all"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-3xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-                        {tech.icon}
-                      </span>
-                      <h3 className="text-lg font-bold text-black dark:text-white">
+                  <div className="flex items-center w-full gap-4 mb-8">
+                    <span className="text-4xl sm:text-5xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                      {tech.icon}
+                    </span>
+                    <div className="flex items-center justify-between flex-1">
+                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-zinc-50 leading-tight tracking-tight max-w-[120px] break-words text-left">
                         {tech.name}
                       </h3>
+                      <span className="text-zinc-500 dark:text-zinc-400 font-bold text-sm">
+                        {tech.level}%
+                      </span>
                     </div>
-                    <span className="text-black/60 dark:text-white/60 text-sm font-semibold">
-                      {tech.level}%
-                    </span>
                   </div>
 
-                  {/* Progress Bar */}
-                  <div className="w-full bg-black/5 dark:bg-white/10 rounded-full h-2.5 mb-2 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${tech.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                      className="h-full bg-black dark:bg-white rounded-full"
-                    />
-                  </div>
+                  <div className="w-full mt-auto">
+                    {/* Progress Bar */}
+                    <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-4 mb-3 relative overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${tech.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                        className="absolute left-0 top-0 h-full bg-zinc-900 dark:bg-zinc-50 rounded-full"
+                      />
+                    </div>
 
-                  {/* Skill Level Indicator */}
-                  <div className="flex justify-between text-xs text-black/40 dark:text-white/40 font-medium pt-1">
-                    <span>Beginner</span>
-                    <span>Expert</span>
+                    {/* Skill Level Indicator */}
+                    <div className="flex justify-between w-full text-xs font-bold text-zinc-400 dark:text-zinc-500 px-1">
+                      <span>Beginner</span>
+                      <span>Expert</span>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -182,7 +177,7 @@ export default function TechStack() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-20"
         >
-          <p className="text-black/60 dark:text-white/60 mb-8 text-lg">
+          <p className="text-zinc-600 dark:text-zinc-400 mb-8 text-lg">
             Always learning and exploring new technologies to stay at the forefront of development
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -193,7 +188,7 @@ export default function TechStack() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.6 + index * 0.1 }}
-                className="px-5 py-2.5 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-black dark:text-white rounded-full text-sm font-medium hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-default"
+                className="px-5 py-2.5 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-50 rounded-full text-sm font-bold uppercase tracking-widest hover:border-teal-500 hover:text-teal-600 dark:hover:text-teal-400 transition-colors cursor-default"
               >
                 {action}
               </motion.span>

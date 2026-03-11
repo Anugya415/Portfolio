@@ -82,7 +82,7 @@ export default function Projects() {
     if (activeFilter === 'all') return true;
     if (activeFilter === 'featured') return project.featured;
     return project.category === activeFilter;
-  });
+  }).slice(0, 4);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -160,7 +160,7 @@ export default function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[500px]"
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 min-h-[500px]"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (

@@ -36,15 +36,13 @@ export default function Experience() {
 
   const education = {
     degree: 'Bachelor of Technology in Computer Science',
-    university: 'Your University Name',
-    period: '2020 - 2024',
-    location: 'Your City, Country',
+    university: 'KL University',
+    period: '2023 - 2027',
+    location: 'Vijayawada, India',
     description: 'Focused on software engineering, algorithms, data structures, and web development. Active member of the computer science club and participated in various hackathons and coding competitions.',
     achievements: [
-      'Graduated with honors (CGPA: 8.5/10)',
+      'Graduated with honors (CGPA: 9.02/10)',
       'Active member of Computer Science Club',
-      'Participated in 5+ hackathons and coding competitions',
-      'Led team projects and collaborated on open-source initiatives',
       'Completed coursework in Advanced Algorithms, Data Structures, and Software Engineering'
     ],
     relevantCourses: ['Data Structures & Algorithms', 'Web Development', 'Database Management', 'Software Engineering', 'Computer Networks']
