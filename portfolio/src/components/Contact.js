@@ -38,8 +38,8 @@ export default function Contact() {
     {
       icon: FaEnvelope,
       title: 'Email',
-      value: 'anugya@example.com',
-      link: 'mailto:anugya@example.com',
+      value: 'reddyanugya@gmail.com',
+      link: 'mailto:reddyanugya@gmail.com',
       description: 'Send me an email anytime!'
     },
     {
@@ -59,9 +59,9 @@ export default function Contact() {
     {
       icon: FaMapMarkerAlt,
       title: 'Location',
-      value: 'Hyderabad, India',
+      value: 'Bilaspur, India',
       link: null,
-      description: 'Based in Hyderabad, open to remote work'
+      description: 'Based in Bilaspur, open to remote work'
     }
   ];
 
@@ -138,20 +138,20 @@ export default function Contact() {
                         <div className="p-3 bg-black dark:bg-white rounded-xl group-hover:scale-110 transition-transform">
                           <IconComponent className="text-white dark:text-black text-xl" />
                         </div>
-                        <div className="flex-1">
+                        <div className="flex-1 min-w-0">
                           <h4 className="text-lg font-bold text-black dark:text-white mb-1">{info.title}</h4>
-                          <p className="text-sm text-black/60 dark:text-white/60 mb-1">{info.description}</p>
+                          <p className="text-sm text-black/60 dark:text-white/60 mb-2">{info.description}</p>
                           {info.link ? (
                             <a
                               href={info.link}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-black dark:text-white hover:text-black/70 dark:hover:text-white/70 font-medium transition-colors"
+                              className="text-black dark:text-white hover:text-black/70 dark:hover:text-white/70 font-medium transition-colors break-all inline-block"
                             >
                               {info.value}
                             </a>
                           ) : (
-                            <span className="text-black/80 dark:text-white/80">{info.value}</span>
+                            <span className="text-black/80 dark:text-white/80 break-words inline-block">{info.value}</span>
                           )}
                         </div>
                       </div>

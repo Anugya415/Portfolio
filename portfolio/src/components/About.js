@@ -9,8 +9,8 @@ export default function About() {
   const [activeTab, setActiveTab] = useState('story');
 
   const stats = [
-    { number: '3+', label: 'YEARS\nEXPERIENCE', icon: FaAward },
-    { number: '50+', label: 'PROJECTS\nCOMPLETED', icon: FaProjectDiagram },
+    { number: '1+', label: 'YEARS\nEXPERIENCE', icon: FaAward },
+    { number: '10+', label: 'PROJECTS\nCOMPLETED', icon: FaProjectDiagram },
     { number: '10+', label: 'TECHNOLOGIES', icon: FaLayerGroup },
     { number: '100%', label: 'CLIENT\nSATISFACTION', icon: FaHeart }
   ];
