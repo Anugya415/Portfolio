@@ -129,17 +129,17 @@ export default function TechStack() {
                   key={tech.name}
                   variants={cardVariants}
                   whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                  className="bg-white dark:bg-zinc-900 flex flex-col justify-between border border-zinc-200 dark:border-zinc-800 rounded-[32px] p-6 sm:p-8 w-full mx-auto group shadow-sm transition-all"
+                  className="bg-white dark:bg-zinc-900 flex flex-col justify-between border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 sm:p-6 w-full mx-auto group shadow-sm transition-all"
                 >
-                  <div className="flex items-center w-full gap-4 mb-8">
-                    <span className="text-4xl sm:text-5xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                  <div className="flex items-center w-full gap-3 mb-4">
+                    <span className="text-3xl sm:text-4xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       {tech.icon}
                     </span>
                     <div className="flex items-center justify-between flex-1">
-                      <h3 className="text-lg sm:text-xl font-black text-zinc-900 dark:text-zinc-50 leading-tight tracking-tight max-w-[120px] break-words text-left">
+                      <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-50 leading-tight tracking-tight max-w-[120px] break-words text-left">
                         {tech.name}
                       </h3>
-                      <span className="text-zinc-500 dark:text-zinc-400 font-bold text-sm">
+                      <span className="text-zinc-500 dark:text-zinc-400 font-bold text-xs">
                         {tech.level}%
                       </span>
                     </div>
@@ -147,7 +147,7 @@ export default function TechStack() {
 
                   <div className="w-full mt-auto">
                     {/* Progress Bar */}
-                    <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-4 mb-3 relative overflow-hidden">
+                    <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-2 mb-2 relative overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${tech.level}%` }}
@@ -158,7 +158,7 @@ export default function TechStack() {
                     </div>
 
                     {/* Skill Level Indicator */}
-                    <div className="flex justify-between w-full text-xs font-bold text-zinc-400 dark:text-zinc-500 px-1">
+                    <div className="flex justify-between w-full text-[10px] font-bold text-zinc-400 dark:text-zinc-500 px-1">
                       <span>Beginner</span>
                       <span>Expert</span>
                     </div>

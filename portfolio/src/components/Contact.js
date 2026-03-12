@@ -119,20 +119,20 @@ export default function Contact() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            className="space-y-8"
+            className="flex flex-col h-full"
           >
-            <div>
+            <div className="flex-1 flex flex-col justify-between">
               <h3 className="text-2xl font-bold text-black dark:text-white mb-8">Get in Touch</h3>
 
               {/* Contact Cards */}
-              <div className="space-y-4 mb-8">
+              <div className="flex flex-col justify-between flex-1 mb-8 gap-4">
                 {contactInfo.map((info) => {
                   const IconComponent = info.icon;
                   return (
                     <motion.div
                       variants={itemVariants}
                       key={info.title}
-                      className="bg-transparent border border-black/10 dark:border-white/10 rounded-2xl p-6 hover:border-black/30 dark:hover:border-white/30 transition-all group"
+                      className="bg-transparent border border-black/10 dark:border-white/10 rounded-2xl p-6 hover:border-black/30 dark:hover:border-white/30 transition-all group flex-1 flex flex-col justify-center"
                     >
                       <div className="flex items-center space-x-4">
                         <div className="p-3 bg-black dark:bg-white rounded-xl group-hover:scale-110 transition-transform">
@@ -168,10 +168,12 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col h-full"
           >
-            <div className="bg-transparent border border-black/10 dark:border-white/10 rounded-3xl p-8 lg:p-10">
-              <h3 className="text-2xl font-bold text-black dark:text-white mb-8">Send Message</h3>
+            {/* Spacer to align with "Get in Touch" header */}
+            <div className="h-[40px] mb-8 hidden lg:block"></div>
 
+            <div className="bg-transparent border border-black/10 dark:border-white/10 rounded-2xl p-6 lg:p-8 flex-1 flex flex-col relative overflow-hidden">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -187,76 +189,77 @@ export default function Contact() {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
-                        Name *
+                <form onSubmit={handleSubmit} className="flex flex-col flex-1 text-left space-y-8">
+                  <div className="space-y-6 flex-1 flex flex-col">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 flex-none">
+                      <div>
+                        <label htmlFor="name" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
+                          Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 transition-all outline-none"
+                          placeholder="Your name"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="email" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 transition-all outline-none"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex-none">
+                      <label htmlFor="subject" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
+                        Subject
                       </label>
                       <input
                         type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
                         onChange={handleInputChange}
-                        required
                         className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 transition-all outline-none"
-                        placeholder="Your name"
+                        placeholder="What's this about?"
                       />
                     </div>
 
-                    <div>
-                      <label htmlFor="email" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
-                        Email *
+                    <div className="flex flex-col flex-1">
+                      <label htmlFor="message" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2 flex-none">
+                        Message *
                       </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 transition-all outline-none"
-                        placeholder="your.email@example.com"
-                      />
+                        className="w-full flex-1 px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 resize-none transition-all outline-none min-h-[200px]"
+                        placeholder="Tell me about your project or just say hello!"
+                      ></textarea>
                     </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 transition-all outline-none"
-                      placeholder="What's this about?"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-black/80 dark:text-white/80 text-sm font-semibold mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={6}
-                      className="w-full px-4 py-3 bg-black/5 dark:bg-white/5 border-2 border-black/10 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 resize-none transition-all outline-none"
-                      placeholder="Tell me about your project or just say hello!"
-                    ></textarea>
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-black dark:bg-white hover:bg-black/90 dark:hover:bg-white/90 disabled:bg-black/30 dark:disabled:bg-white/30 text-white dark:text-black disabled:text-black/50 dark:disabled:text-white/50 px-6 py-4 rounded-xl font-semibold text-base transition-all duration-300 disabled:cursor-not-allowed hover:scale-[1.02] hover:shadow-xl"
+                    className="w-full mt-auto bg-black dark:bg-white hover:bg-black/90 dark:hover:bg-white/90 disabled:bg-black/30 dark:disabled:bg-white/30 text-white dark:text-black disabled:text-black/50 dark:disabled:text-white/50 px-6 py-4 rounded-xl font-semibold text-base transition-all duration-300 disabled:cursor-not-allowed hover:scale-[1.02] hover:shadow-xl"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center justify-center">

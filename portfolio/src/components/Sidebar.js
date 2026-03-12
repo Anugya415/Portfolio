@@ -51,13 +51,13 @@ export default function Sidebar() {
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
       <div>
-        <h1 className="text-3xl sm:text-4xl font-black tracking-tighter text-zinc-900 dark:text-zinc-50 mb-3 sm:mb-4">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-zinc-900 dark:text-zinc-50 mb-3 sm:mb-4">
           K. Anugya Reddy
         </h1>
-        <h2 className="text-base sm:text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-200 mt-2">
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-200 mt-2">
           Full Stack Developer
         </h2>
-        <p className="mt-4 text-sm max-w-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+        <p className="mt-4 text-base max-w-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
           Crafting digital experiences that blend functionality with elegance. Transforming ideas into reality through code and design.
         </p>
 

@@ -4,7 +4,6 @@ import Experience from '../src/components/Experience';
 import TechStack from '../src/components/TechStack';
 import Projects from '../src/components/Projects';
 import Contact from '../src/components/Contact';
-import Footer from '../src/components/Footer';
 
 export default function Portfolio() {
   return (
@@ -16,8 +15,8 @@ export default function Portfolio() {
         <div className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vh] bg-teal-900/5 rounded-full blur-[120px] mix-blend-screen overflow-hidden"></div>
       </div>
 
-      <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-0">
-        <div className="lg:flex lg:justify-between lg:gap-4">
+      <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 xl:px-8 lg:py-0">
+        <div className="lg:flex lg:justify-between lg:gap-16 xl:gap-24">
           <Sidebar />
           <main id="content" className="pt-24 lg:w-[52%] lg:py-24 space-y-24 sm:space-y-32">
             <About />
@@ -25,7 +24,6 @@ export default function Portfolio() {
             <Projects />
             <TechStack />
             <Contact />
-            <Footer />
           </main>
         </div>
       </div>
