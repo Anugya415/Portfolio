@@ -100,7 +100,8 @@ export default function Experience() {
                     </p>
 
                     {/* Achievements */}
-                    <div className="mb-6 hidden">
+                    <div className="mb-6">
+
                       <h5 className="text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-50 mb-3">Key Achievements</h5>
                       <ul className="space-y-2">
                         {exp.achievements.map((achievement, idx) => (
