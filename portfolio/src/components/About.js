@@ -1,12 +1,38 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaAward, FaProjectDiagram, FaLayerGroup, FaHeart } from 'react-icons/fa';
-import { IoCodeSlash, IoServer, IoHammer } from 'react-icons/io5';
+import { IoCodeSlash, IoServer, IoHammer, IoDocumentText } from 'react-icons/io5';
 
 export default function About() {
   const [activeTab, setActiveTab] = useState('story');
+  const buttonRef = useRef(null);
+  
+  // Magnetic Effect Logic
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 150 };
+  const magneticX = useSpring(mouseX, springConfig);
+  const magneticY = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e) => {
+    if (!buttonRef.current) return;
+    const { clientX, clientY } = e;
+    const { left, top, width, height } = buttonRef.current.getBoundingClientRect();
+    const x = clientX - (left + width / 2);
+    const y = clientY - (top + height / 2);
+    
+    // Limits the magnetic pull
+    mouseX.set(x * 0.35);
+    mouseY.set(y * 0.35);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   const stats = [
     { number: '1+', label: 'YEARS\nEXPERIENCE', icon: FaAward },
@@ -146,6 +172,69 @@ export default function About() {
                   <p className="text-base text-black/80 dark:text-white/80 leading-relaxed max-w-3xl">
                     When I'm not coding, you'll find me exploring emerging technologies, contributing to open-source projects, or sharing knowledge with the community.
                   </p>
+
+                  <div className="pt-12">
+                    <motion.div
+                      ref={buttonRef}
+                      onMouseMove={handleMouseMove}
+                      onMouseLeave={handleMouseLeave}
+                      style={{
+                        x: magneticX,
+                        y: magneticY,
+                      }}
+                      className="relative inline-block"
+                    >
+                      <motion.a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="group relative flex items-center justify-center px-12 py-5 rounded-2xl overflow-hidden transition-all duration-500"
+                      >
+                        {/* Hyper-Premium Background Layers */}
+                        <div className="absolute inset-0 bg-zinc-900 dark:bg-zinc-100 transition-colors duration-500" />
+                        
+                        {/* Iridescent Gradient Shader */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[linear-gradient(110deg,#6366f1,45%,#a855f7,55%,#6366f1)] bg-[length:200%_100%] animate-[shine_3s_linear_infinite]" />
+                        
+                        {/* Glass Overlay */}
+                        <div className="absolute inset-[1px] bg-white/10 dark:bg-black/10 backdrop-blur-md rounded-[15px] z-10" />
+                        
+                        {/* CONTENT */}
+                        <div className="relative z-20 flex items-center gap-4 text-zinc-100 dark:text-zinc-900">
+                          <motion.div
+                            animate={{ 
+                              rotate: [0, 10, -10, 0],
+                            }}
+                            transition={{ 
+                              duration: 5,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
+                          >
+                            <IoDocumentText className="text-2xl" />
+                          </motion.div>
+                          
+                          <div className="flex flex-col items-start">
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-70 mb-0.5 group-hover:opacity-100 transition-opacity">Curriculum Vitae</span>
+                            <span className="text-sm font-black uppercase tracking-[0.2em]">Launch Resume</span>
+                          </div>
+
+                          <motion.div
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                            className="ml-2 text-xl"
+                          >
+                            →
+                          </motion.div>
+                        </div>
+
+                        {/* Outer Holographic Glow */}
+                        <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/0 via-purple-500/20 to-pink-500/0 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      </motion.a>
+                    </motion.div>
+                  </div>
 
                   {/* Core Values */}
                   <div className="pt-6 mt-8 border-t border-zinc-200 dark:border-zinc-800">

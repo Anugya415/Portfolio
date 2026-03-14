@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { IoHome, IoPerson, IoCodeSlash, IoBriefcase, IoMail, IoMoon, IoSunny } from 'react-icons/io5';
+import { IoHome, IoPerson, IoCodeSlash, IoBriefcase, IoMail, IoMoon, IoSunny, IoDocumentText } from 'react-icons/io5';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +46,8 @@ export default function Header() {
     { id: 'about', label: 'About', icon: IoPerson },
     { id: 'skills', label: 'Skills', icon: IoCodeSlash },
     { id: 'projects', label: 'Projects', icon: IoBriefcase },
-    { id: 'contact', label: 'Contact', icon: IoMail }
+    { id: 'contact', label: 'Contact', icon: IoMail },
+    { id: 'resume', label: 'Resume', icon: IoDocumentText, isExternal: true, href: '/resume.pdf' }
   ];
 
   return (
@@ -72,7 +73,13 @@ export default function Header() {
             {navItems.map((item, index) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => {
+                  if (item.isExternal) {
+                    window.open(item.href, '_blank');
+                  } else {
+                    scrollToSection(item.id);
+                  }
+                }}
                 className={`group relative px-4 py-2 text-xs font-semibold transition-all duration-500 rounded-full overflow-hidden ${activeSection === item.id
                   ? 'text-white dark:text-black bg-black dark:bg-white shadow-lg scale-105'
                   : 'text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-white/80 dark:hover:bg-white/10'
@@ -133,9 +140,15 @@ export default function Header() {
           <div className="md:hidden mt-2 px-2 pb-2 animate-fade-in">
             <div className="bg-black/5 dark:bg-white/10 backdrop-blur-3xl rounded-2xl p-2 space-y-1">
               {navItems.map((item, index) => (
-                <button
+                  <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => {
+                    if (item.isExternal) {
+                      window.open(item.href, '_blank');
+                    } else {
+                      scrollToSection(item.id);
+                    }
+                  }}
                   className={`group relative w-full flex items-center gap-3 px-4 py-3 text-sm font-medium transition-all duration-300 rounded-xl overflow-hidden ${activeSection === item.id
                     ? 'text-white dark:text-black bg-black dark:bg-white shadow-lg'
                     : 'text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white hover:bg-white/80 dark:hover:bg-white/10'
