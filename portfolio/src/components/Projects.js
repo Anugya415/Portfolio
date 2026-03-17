@@ -26,7 +26,7 @@ export default function Projects() {
       description: 'A mobile application built using React Native and Expo. It utilizes Tamagui and NativeWind for a sleek, responsive cross-platform user interface.',
       tech: ['React Native', 'Expo', 'Tamagui', 'NativeWind'],
       category: 'frontend',
-      github: 'https://github.com/anugya-reddy/HackForge2.0-app',
+      github: 'https://github.com/Anugya415/codeForge',
       live: null,
       image: 'https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=600&h=400&fit=crop',
       status: 'completed',
@@ -294,7 +294,7 @@ export default function Projects() {
           className="text-center mt-20"
         >
           <a
-            href="https://github.com/anugya-reddy"
+            href="https://github.com/Anugya415"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 pb-1 border-b-2 border-zinc-900 dark:border-zinc-50 text-zinc-900 dark:text-zinc-50 font-bold text-sm uppercase tracking-widest transition-all hover:text-teal-600 dark:hover:text-teal-400 hover:border-teal-600 dark:hover:border-teal-400"

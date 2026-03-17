@@ -190,7 +190,7 @@ export default function About() {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                        className="group relative flex items-center justify-center px-12 py-5 rounded-2xl overflow-hidden transition-all duration-500"
+                        className="group relative flex items-center justify-center px-8 py-3 rounded-xl overflow-hidden transition-all duration-500"
                       >
                         {/* Hyper-Premium Background Layers */}
                         <div className="absolute inset-0 bg-zinc-900 dark:bg-zinc-100 transition-colors duration-500" />
@@ -199,7 +199,7 @@ export default function About() {
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[linear-gradient(110deg,#6366f1,45%,#a855f7,55%,#6366f1)] bg-[length:200%_100%] animate-[shine_3s_linear_infinite]" />
                         
                         {/* Glass Overlay */}
-                        <div className="absolute inset-[1px] bg-white/10 dark:bg-black/10 backdrop-blur-md rounded-[15px] z-10" />
+                        <div className="absolute inset-[1px] bg-white/10 dark:bg-black/10 backdrop-blur-md rounded-[11px] z-10" />
                         
                         {/* CONTENT */}
                         <div className="relative z-20 flex items-center gap-4 text-zinc-100 dark:text-zinc-900">
@@ -213,18 +213,18 @@ export default function About() {
                               ease: "easeInOut"
                             }}
                           >
-                            <IoDocumentText className="text-2xl" />
+                            <IoDocumentText className="text-xl" />
                           </motion.div>
                           
                           <div className="flex flex-col items-start">
-                            <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-70 mb-0.5 group-hover:opacity-100 transition-opacity">Curriculum Vitae</span>
-                            <span className="text-sm font-black uppercase tracking-[0.2em]">Launch Resume</span>
+                             <span className="text-[9px] font-black uppercase tracking-[0.4em] opacity-70 mb-0.5 group-hover:opacity-100 transition-opacity">Curriculum Vitae</span>
+                             <span className="text-xs font-black uppercase tracking-[0.2em]">Launch Resume</span>
                           </div>
 
                           <motion.div
                             animate={{ x: [0, 5, 0] }}
                             transition={{ duration: 1.5, repeat: Infinity }}
-                            className="ml-2 text-xl"
+                             className="ml-2 text-lg"
                           >
                             →
                           </motion.div>

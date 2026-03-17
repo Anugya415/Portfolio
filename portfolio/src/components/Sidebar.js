@@ -95,7 +95,7 @@ export default function Sidebar() {
       </div>
 
       <div className="mt-8 lg:mt-0 flex items-center gap-5">
-        <a href="https://github.com/anugya-reddy" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors">
+        <a href="https://github.com/Anugya415" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors">
           <IoLogoGithub className="w-6 h-6" />
           <span className="sr-only">GitHub</span>
         </a>

@@ -52,8 +52,8 @@ export default function Contact() {
     {
       icon: FaGithub,
       title: 'GitHub',
-      value: '@anugya-reddy',
-      link: 'https://github.com/anugya-reddy',
+      value: '@Anugya415',
+      link: 'https://github.com/Anugya415',
       description: 'Check out my code repositories'
     },
     {
