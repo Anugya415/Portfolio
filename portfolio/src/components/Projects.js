@@ -123,9 +123,6 @@ export default function Projects() {
             <div className="h-px w-12 bg-zinc-300 dark:bg-zinc-700"></div>
             <span className="text-sm font-mono text-zinc-700 dark:text-zinc-400 tracking-widest uppercase">Projects</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
-            Featured Projects
-          </h2>
           <p className="text-lg text-black/60 dark:text-white/60 max-w-2xl mx-auto">
             A collection of my recent work and creative solutions
           </p>
@@ -160,7 +157,7 @@ export default function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 min-h-[500px]"
+          className="flex flex-col gap-y-12 max-w-2xl mx-auto min-h-[500px]"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
@@ -172,68 +169,21 @@ export default function Projects() {
                 animate="visible"
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className="group flex flex-col gap-6 w-full"
+                className="group flex flex-col gap-6 w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm"
               >
-                {/* Project Image */}
-                <div className="relative h-64 overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-                  <motion.img
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.4 }}
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 dark:group-hover:bg-black/40 transition-colors duration-300"></div>
-
-                  {/* Status Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md ${project.status === 'completed'
-                        ? 'bg-black/90 dark:bg-white/90 text-white dark:text-black'
-                        : 'bg-white/90 dark:bg-black/90 text-black dark:text-white'
+                {/* Project Content */}
+                <div className="relative z-20 flex flex-col flex-1 p-6">
+                  {/* Status & Featured Badges */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className={`px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-widest ${project.status === 'completed'
+                        ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100'
+                        : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100'
                       }`}>
                       {project.status === 'in-progress' ? 'In Progress' : 'Completed'}
                     </span>
                   </div>
 
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1 bg-white/90 dark:bg-black/90 backdrop-blur-md text-black dark:text-white rounded-full text-xs font-bold border border-black/10 dark:border-white/10">
-                        ⭐ Featured
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Hover Overlay with Links */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                    <div className="flex gap-3">
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-3 bg-white dark:bg-black rounded-full hover:scale-110 transition-transform shadow-lg"
-                          aria-label="Live Demo"
-                        >
-                          <FaExternalLinkAlt className="text-black dark:text-white" />
-                        </a>
-                      )}
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 bg-white dark:bg-black rounded-full hover:scale-110 transition-transform shadow-lg"
-                        aria-label="GitHub"
-                      >
-                        <FaGithub className="text-black dark:text-white" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project Content */}
-                <div className="relative z-20 flex flex-col flex-1">
-                  <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                  <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                     {project.title}
                   </h3>
 
@@ -254,10 +204,7 @@ export default function Projects() {
                   </div>
 
                   {/* Project Links */}
-                  <div className="flex items-center justify-between pt-4 mt-auto border-t border-zinc-200 dark:border-zinc-800">
-                    <span className="text-xs text-zinc-500 dark:text-zinc-500 font-bold uppercase tracking-widest">
-                      {project.category}
-                    </span>
+                  <div className="flex items-center justify-end pt-4 mt-auto border-t border-zinc-200 dark:border-zinc-800">
                     <div className="flex gap-4">
                       {project.live && (
                         <a

@@ -1,64 +1,9 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { FaAward, FaProjectDiagram, FaLayerGroup, FaHeart } from 'react-icons/fa';
-import { IoCodeSlash, IoServer, IoHammer, IoDocumentText } from 'react-icons/io5';
+import { motion } from 'framer-motion';
+import { IoDocumentText } from 'react-icons/io5';
 
 export default function About() {
-  const [activeTab, setActiveTab] = useState('story');
-  const buttonRef = useRef(null);
-  
-  // Magnetic Effect Logic
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 20, stiffness: 150 };
-  const magneticX = useSpring(mouseX, springConfig);
-  const magneticY = useSpring(mouseY, springConfig);
-
-  const handleMouseMove = (e) => {
-    if (!buttonRef.current) return;
-    const { clientX, clientY } = e;
-    const { left, top, width, height } = buttonRef.current.getBoundingClientRect();
-    const x = clientX - (left + width / 2);
-    const y = clientY - (top + height / 2);
-    
-    // Limits the magnetic pull
-    mouseX.set(x * 0.35);
-    mouseY.set(y * 0.35);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
-  const stats = [
-    { number: '1+', label: 'YEARS\nEXPERIENCE', icon: FaAward },
-    { number: '10+', label: 'PROJECTS\nCOMPLETED', icon: FaProjectDiagram },
-    { number: '10+', label: 'TECHNOLOGIES', icon: FaLayerGroup },
-    { number: '100%', label: 'CLIENT\nSATISFACTION', icon: FaHeart }
-  ];
-
-  const skills = [
-    {
-      category: 'Frontend',
-      items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-      icon: IoCodeSlash
-    },
-    {
-      category: 'Backend',
-      items: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'Prisma'],
-      icon: IoServer
-    },
-    {
-      category: 'Tools',
-      items: ['Git', 'Docker', 'AWS', 'Figma', 'Vercel'],
-      icon: IoHammer
-    }
-  ];
-
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -97,9 +42,6 @@ export default function About() {
             <div className="h-px w-12 bg-zinc-300 dark:bg-zinc-700"></div>
             <span className="text-sm font-mono text-zinc-700 dark:text-zinc-400 tracking-widest uppercase">About</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
-            About Me
-          </h2>
           <p className="text-lg text-black/60 dark:text-white/60 max-w-2xl mx-auto leading-relaxed">
             Crafting digital experiences with passion and precision
           </p>
@@ -107,182 +49,41 @@ export default function About() {
 
         {/* Main Content */}
         <div className="flex flex-col gap-16 lg:gap-24 items-center w-full max-w-4xl mx-auto">
-          {/* Top Section - Stats Grid */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="w-full"
-          >
-            <div className="grid grid-cols-2 max-w-2xl mx-auto">
-              {stats.map((stat, index) => {
-                return (
-                  <motion.div
-                    variants={fadeInUp}
-                    key={stat.label}
-                    className={`p-6 sm:p-12 transition-all flex flex-col justify-center ${index % 2 === 0 ? 'border-r border-zinc-200 dark:border-zinc-800' : ''} ${index < 2 ? 'border-b border-zinc-200 dark:border-zinc-800' : ''}`}
-                  >
-                    <div className="text-left">
-                      <div className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-zinc-900 dark:text-zinc-50 mb-3">{stat.number}</div>
-                      <div className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 whitespace-pre-line leading-relaxed">{stat.label}</div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* Bottom Section - Content Tabs */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUp}
-            className="space-y-8"
+            className="w-full space-y-16"
           >
-            {/* Tab Navigation */}
-            <div className="flex space-x-2 border-b border-zinc-200 dark:border-zinc-800">
-              {['story', 'skills'].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`py-4 px-6 text-sm font-bold uppercase tracking-widest transition-all duration-300 relative ${activeTab === tab
-                      ? 'text-zinc-900 dark:text-zinc-50 border-b-2 border-zinc-900 dark:border-zinc-50'
-                      : 'text-zinc-500 dark:text-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-300'
-                    }`}
+            {/* Story Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-6"
+            >
+              <p className="text-base text-black/80 dark:text-white/80 leading-relaxed max-w-3xl">
+                I'm a passionate <span className="font-semibold text-black dark:text-white">full-stack developer</span> with a keen eye for design and user experience. I build clean, intuitive, and scalable digital solutions that make a real impact.
+              </p>
+              <p className="text-base text-black/80 dark:text-white/80 leading-relaxed max-w-3xl">
+                When I'm not coding, you'll find me exploring emerging technologies, contributing to open-source projects, or sharing knowledge with the community.
+              </p>
+
+              <div className="pt-12">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-3 bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-bold uppercase tracking-widest text-xs rounded-full hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm"
                 >
-                  {tab}
-                </button>
-              ))}
-            </div>
+                  <IoDocumentText className="mr-2 text-lg" />
+                  View Resume
+                </a>
+              </div>
 
-            {/* Tab Content */}
-            <div className="bg-transparent border-0 mt-4 h-full">
-              {activeTab === 'story' && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-6"
-                >
-                  <p className="text-base text-black/80 dark:text-white/80 leading-relaxed max-w-3xl">
-                    I'm a passionate <span className="font-semibold text-black dark:text-white">full-stack developer</span> with a keen eye for design and user experience. I build clean, intuitive, and scalable digital solutions that make a real impact.
-                  </p>
-                  <p className="text-base text-black/80 dark:text-white/80 leading-relaxed max-w-3xl">
-                    When I'm not coding, you'll find me exploring emerging technologies, contributing to open-source projects, or sharing knowledge with the community.
-                  </p>
 
-                  <div className="pt-12">
-                    <motion.div
-                      ref={buttonRef}
-                      onMouseMove={handleMouseMove}
-                      onMouseLeave={handleMouseLeave}
-                      style={{
-                        x: magneticX,
-                        y: magneticY,
-                      }}
-                      className="relative inline-block"
-                    >
-                      <motion.a
-                        href="/resume.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="group relative flex items-center justify-center px-8 py-3 rounded-xl overflow-hidden transition-all duration-500"
-                      >
-                        {/* Hyper-Premium Background Layers */}
-                        <div className="absolute inset-0 bg-zinc-900 dark:bg-zinc-100 transition-colors duration-500" />
-                        
-                        {/* Iridescent Gradient Shader */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[linear-gradient(110deg,#6366f1,45%,#a855f7,55%,#6366f1)] bg-[length:200%_100%] animate-[shine_3s_linear_infinite]" />
-                        
-                        {/* Glass Overlay */}
-                        <div className="absolute inset-[1px] bg-white/10 dark:bg-black/10 backdrop-blur-md rounded-[11px] z-10" />
-                        
-                        {/* CONTENT */}
-                        <div className="relative z-20 flex items-center gap-4 text-zinc-100 dark:text-zinc-900">
-                          <motion.div
-                            animate={{ 
-                              rotate: [0, 10, -10, 0],
-                            }}
-                            transition={{ 
-                              duration: 5,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          >
-                            <IoDocumentText className="text-xl" />
-                          </motion.div>
-                          
-                          <div className="flex flex-col items-start">
-                             <span className="text-[9px] font-black uppercase tracking-[0.4em] opacity-70 mb-0.5 group-hover:opacity-100 transition-opacity">Curriculum Vitae</span>
-                             <span className="text-xs font-black uppercase tracking-[0.2em]">Launch Resume</span>
-                          </div>
-
-                          <motion.div
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                             className="ml-2 text-lg"
-                          >
-                            →
-                          </motion.div>
-                        </div>
-
-                        {/* Outer Holographic Glow */}
-                        <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/0 via-purple-500/20 to-pink-500/0 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      </motion.a>
-                    </motion.div>
-                  </div>
-
-                  {/* Core Values */}
-                  <div className="pt-6 mt-8 border-t border-zinc-200 dark:border-zinc-800">
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-50 mb-6">Core Values</h3>
-                    <div className="flex flex-wrap gap-4">
-                      {['Problem Solver', 'Team Player', 'Quick Learner', 'Creative Thinker'].map((trait) => (
-                        <span
-                          key={trait}
-                          className="text-zinc-700 dark:text-zinc-300 text-sm font-medium transition-colors cursor-default"
-                        >
-                          {trait}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
-              {activeTab === 'skills' && (
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-8"
-                >
-                  {skills.map((skillGroup) => {
-                    const IconComponent = skillGroup.icon;
-                    return (
-                      <div key={skillGroup.category} className="group mb-8">
-                        <div className="flex items-center mb-4">
-                          <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-900 dark:text-zinc-50">{skillGroup.category}</h4>
-                        </div>
-                        <div className="flex flex-wrap gap-x-6 gap-y-2">
-                          {skillGroup.items.map((skill) => (
-                            <span
-                              key={skill}
-                              className="text-zinc-600 dark:text-zinc-400 text-sm font-medium transition-colors cursor-default"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </motion.div>
-              )}
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

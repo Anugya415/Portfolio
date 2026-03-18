@@ -1,8 +1,8 @@
 import Sidebar from '../src/components/Sidebar';
 import About from '../src/components/About';
-import Experience from '../src/components/Experience';
 import TechStack from '../src/components/TechStack';
 import Projects from '../src/components/Projects';
+import Certificates from '../src/components/Certificates';
 import Contact from '../src/components/Contact';
 
 export default function Portfolio() {
@@ -20,9 +20,9 @@ export default function Portfolio() {
           <Sidebar />
           <main id="content" className="pt-24 lg:w-[52%] lg:py-24 space-y-24 sm:space-y-32">
             <About />
-            <Experience />
-            <Projects />
             <TechStack />
+            <Projects />
+            <Certificates />
             <Contact />
           </main>
         </div>

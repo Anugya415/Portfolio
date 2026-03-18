@@ -14,7 +14,7 @@ export default function Sidebar() {
 
     const handleScroll = () => {
       // Find the current active section
-      const sections = ['about', 'experience', 'projects', 'skills', 'contact'];
+      const sections = ['about', 'skills', 'projects', 'certificates', 'contact'];
       const scrollPosition = window.scrollY;
 
       const currentSection = sections.find(section => {
@@ -42,9 +42,9 @@ export default function Sidebar() {
 
   const navItems = [
     { id: 'about', label: 'ABOUT' },
-    { id: 'experience', label: 'EXPERIENCE' },
-    { id: 'projects', label: 'PROJECTS' },
     { id: 'skills', label: 'TECH STACK' },
+    { id: 'projects', label: 'PROJECTS' },
+    { id: 'certificates', label: 'CERTIFICATIONS' },
     { id: 'contact', label: 'CONTACT' }
   ];
 
@@ -111,10 +111,10 @@ export default function Sidebar() {
         {mounted && (
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="ml-auto relative w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 bg-black/5 dark:bg-white/10 text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/20 backdrop-blur-sm"
+            className="fixed top-6 right-6 lg:top-8 lg:right-12 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 shadow-sm"
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? <IoSunny className="text-xl" /> : <IoMoon className="text-xl" />}
+            {theme === 'dark' ? <IoSunny className="text-lg md:text-xl" /> : <IoMoon className="text-lg md:text-xl" />}
           </button>
         )}
       </div>

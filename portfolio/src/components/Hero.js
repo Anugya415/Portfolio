@@ -132,15 +132,12 @@ export default function Hero() {
           <a
             href="/resume.pdf"
             download
-            className="group relative px-10 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-black/20 dark:hover:shadow-white/20 overflow-hidden inline-flex items-center"
+            className="px-10 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 inline-flex items-center"
           >
-            <span className="relative z-10 flex items-center">
-              Download CV Resume
-              <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </span>
-            <div className="absolute inset-0 bg-white/10 dark:bg-black/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+            Download CV Resume
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
           </a>
 
           <button
