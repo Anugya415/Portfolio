@@ -81,7 +81,7 @@ export default function Hero() {
         {/* Greeting Badge */}
         <motion.div variants={itemVariants} className="mb-6 inline-block">
           <span className="px-4 py-2 bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 rounded-full text-sm font-medium text-black/70 dark:text-white/70 backdrop-blur-sm">
-            Hello, I'm
+            Hello, I&apos;m
           </span>
         </motion.div>
 

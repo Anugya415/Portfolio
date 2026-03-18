@@ -64,10 +64,10 @@ export default function About() {
               className="space-y-6"
             >
               <p className="text-base text-black/80 dark:text-white/80 leading-relaxed max-w-3xl">
-                I'm a passionate <span className="font-semibold text-black dark:text-white">full-stack developer</span> with a keen eye for design and user experience. I build clean, intuitive, and scalable digital solutions that make a real impact.
+                I&apos;m a passionate <span className="font-semibold text-black dark:text-white">full-stack developer</span> with a keen eye for design and user experience. I build clean, intuitive, and scalable digital solutions that make a real impact.
               </p>
               <p className="text-base text-black/80 dark:text-white/80 leading-relaxed max-w-3xl">
-                When I'm not coding, you'll find me exploring emerging technologies, contributing to open-source projects, or sharing knowledge with the community.
+                When I&apos;m not coding, you&apos;ll find me exploring emerging technologies, contributing to open-source projects, or sharing knowledge with the community.
               </p>
 
               <div className="pt-12">

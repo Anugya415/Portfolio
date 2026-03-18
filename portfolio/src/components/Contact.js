@@ -81,7 +81,7 @@ export default function Contact() {
             <span className="text-sm font-mono text-zinc-700 dark:text-zinc-400 tracking-widest uppercase">Contact</span>
           </div>
           <p className="text-lg text-black/60 dark:text-white/60 max-w-2xl mx-auto">
-            Have a project in mind? Let's create something amazing together.
+            Have a project in mind? Let&apos;s create something amazing together.
           </p>
         </motion.div>
 
@@ -147,7 +147,7 @@ export default function Contact() {
                       </div>
                       <h4 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-2">Message Sent Successfully</h4>
                       <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                        Thank you for reaching out. I'll get back to you as soon as possible.
+                        Thank you for reaching out. I&apos;ll get back to you as soon as possible.
                       </p>
                     </motion.div>
                   ) : (
